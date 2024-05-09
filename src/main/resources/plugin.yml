@@ -1,0 +1,10 @@
+name: ${rootProject.name}
+main: ${group}
+version: ${version}
+depend:
+  - FICore
+  - PlaceholderAPI
+commands:
+  pokefancyname:
+    description: main cmd
+    aliases: [pfname,pokefn]
