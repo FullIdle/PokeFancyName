@@ -1,12 +1,11 @@
 package me.gsqfi.pokefancyname.commands;
 
-import me.gsqfi.pokefancyname.common.ItemStackHelper;
+import me.gsqfi.pokefancyname.common.EssTypeHelper;
 import me.gsqfi.pokefancyname.fancy.renamecard.Card;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.Collections;
 import java.util.List;
@@ -44,7 +43,7 @@ public class GiveCardCmd extends SubCmd{
 
 
             //大于0且不等于1那就是大于等于2 有玩家和数量参数
-            if (!RenameCmd.isInteger(args[1])){
+            if (!EssTypeHelper.isInteger(args[1])){
                 sender.sendMessage("非法参数,非数字!");
                 return false;
             }

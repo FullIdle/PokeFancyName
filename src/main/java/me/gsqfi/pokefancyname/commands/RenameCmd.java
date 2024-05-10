@@ -2,7 +2,8 @@ package me.gsqfi.pokefancyname.commands;
 
 import com.pixelmonmod.pixelmon.Pixelmon;
 import com.pixelmonmod.pixelmon.api.pokemon.Pokemon;
-import me.gsqfi.pokefancyname.PlayerData;
+import me.gsqfi.pokefancyname.PokemonData;
+import me.gsqfi.pokefancyname.common.EssTypeHelper;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -35,7 +36,7 @@ public class RenameCmd extends SubCmd {
             }
 
             //获取数字
-            if (!isInteger(args[1])) {
+            if (!EssTypeHelper.isInteger(args[1])) {
                 sender.sendMessage("非法参数,非数字!");
                 return false;
             }
@@ -72,18 +73,6 @@ public class RenameCmd extends SubCmd {
     public static void setPokeName(Player player, int slot, String name) {
         Pokemon poke = Pixelmon.storageManager.getParty(player.getUniqueId()).get(slot);
         assert poke != null;
-        PlayerData.setPlayerPokeOName(player, poke.getUUID(), name);
-    }
-
-    /**
-     * 是否是数字
-     */
-    public static boolean isInteger(String str){
-        try {
-            Integer.parseInt(str);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
+        PokemonData.setPokemonOName(poke.getUUID(), name);
     }
 }

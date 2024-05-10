@@ -5,7 +5,7 @@ import com.pixelmonmod.pixelmon.api.pokemon.Pokemon;
 import com.pixelmonmod.pixelmon.entities.pixelmon.EntityPixelmon;
 import me.fullidle.ficore.ficore.common.api.event.ForgeEvent;
 import me.gsqfi.pokefancyname.Main;
-import me.gsqfi.pokefancyname.PlayerData;
+import me.gsqfi.pokefancyname.PokemonData;
 import me.gsqfi.pokefancyname.fancy.renamecard.Card;
 import net.minecraft.entity.player.EntityPlayerMP;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftEntity;
@@ -37,7 +37,7 @@ public class CardListener implements Listener {
         if (inputData.containsKey(uuid)){
             e.setCancelled(true);
             String message = e.getMessage();
-            PlayerData.setPlayerPokeOName(player,inputData.get(uuid), message);
+            PokemonData.setPokemonOName(inputData.get(uuid), message);
             inputData.remove(uuid);
             player.sendMessage("已成功修改精灵的名字为" + message);
         }
@@ -53,7 +53,7 @@ public class CardListener implements Listener {
             UUID uuid = player.getUniqueId();
             if (inputData.containsKey(uuid)){
                 String input = e.getInput();
-                PlayerData.setPlayerPokeOName(player,inputData.get(uuid), input);
+                PokemonData.setPokemonOName(inputData.get(uuid), input);
                 inputData.remove(uuid);
                 player.sendMessage("已成功修改精灵的名字为" + input);
             }

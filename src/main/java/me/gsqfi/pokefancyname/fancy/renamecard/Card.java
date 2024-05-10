@@ -1,8 +1,9 @@
 package me.gsqfi.pokefancyname.fancy.renamecard;
 
 import me.gsqfi.pokefancyname.Main;
-import me.gsqfi.pokefancyname.commands.RenameCmd;
+import me.gsqfi.pokefancyname.common.EssTypeHelper;
 import me.gsqfi.pokefancyname.common.ItemStackHelper;
+import me.gsqfi.pokefancyname.common.StringHelper;
 import net.minecraft.server.v1_12_R1.NBTTagCompound;
 import org.apache.commons.lang3.tuple.Pair;
 import org.bukkit.Material;
@@ -38,8 +39,8 @@ public class Card {
             String name = plugin.getConfig().getString("card.name");
             List<String> list = plugin.getConfig().getStringList("card.lore");
             ItemMeta itemMeta = itemStack.getItemMeta();
-            itemMeta.setDisplayName(Main.replaceColorCode(name));
-            itemMeta.setLore(Main.replaceColorCode(list));
+            itemMeta.setDisplayName(StringHelper.replaceColorCode(name));
+            itemMeta.setLore(StringHelper.replaceColorCode(list));
             itemStack.setItemMeta(itemMeta);
             net.minecraft.server.v1_12_R1.ItemStack nmsCopy = CraftItemStack.asNMSCopy(itemStack);
             NBTTagCompound tag = nmsCopy.getTag() == null?new NBTTagCompound():nmsCopy.getTag();
@@ -60,7 +61,7 @@ public class Card {
         Main plugin = Main.getInstance();
         String materialData = plugin.getConfig().getString("card.material");
         if (!materialData.contains(":")) {
-            Material material = !RenameCmd.isInteger(materialData) ? Material.getMaterial(str) :
+            Material material = !EssTypeHelper.isInteger(materialData) ? Material.getMaterial(str) :
                     Material.getMaterial(Integer.parseInt(str));
             return Pair.of(material, (short) 0);
         }
