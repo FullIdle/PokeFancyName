@@ -6,6 +6,7 @@ import me.clip.placeholderapi.PlaceholderAPI;
 import me.gsqfi.pokefancyname.commands.CMD;
 import me.gsqfi.pokefancyname.fancy.renamecard.Card;
 import me.gsqfi.pokefancyname.listener.CardListener;
+import me.gsqfi.pokefancyname.listener.PokeDataListener;
 import org.bukkit.Bukkit;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Player;
@@ -31,6 +32,7 @@ public class Main extends JavaPlugin {
         command.setTabCompleter(cmd);
 
         getServer().getPluginManager().registerEvents(new CardListener(),this);
+        getServer().getPluginManager().registerEvents(new PokeDataListener(),this);
 
         getLogger().info("§a插件已启用!");
     }

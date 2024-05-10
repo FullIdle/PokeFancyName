@@ -58,7 +58,7 @@ public class PokemonData {
         name = StringHelper.replaceColorCode(name);
         if (EssTypeHelper.isPapi(name)) {
             config.set(String.valueOf(uuid),name);
-            config.save(file);
+            save();
             return;
         }
         for (Player player : players) {
@@ -66,8 +66,14 @@ public class PokemonData {
             if ((poke = getPlayerPokeWithUUID(player, uuid)) == null) {
                 continue;
             }
+            removePokemonOName(uuid);
             poke.setNickname(name);
         }
+    }
+
+    public static void removePokemonOName(UUID uuid){
+        config.set(String.valueOf(uuid),null);
+        save();
     }
 
     /**

@@ -60,7 +60,7 @@ public class GiveCardCmd extends SubCmd{
     public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
         int length = args.length;
         if (length == 1) return null;
-        if (length > 1) return IntStream.range(0,65).boxed().map(String::valueOf).collect(Collectors.toList());
+        if (length > 1) return IntStream.range(1,65).boxed().map(String::valueOf).collect(Collectors.toList());
         return Collections.emptyList();
     }
 }

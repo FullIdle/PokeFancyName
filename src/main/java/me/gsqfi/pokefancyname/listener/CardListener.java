@@ -37,7 +37,7 @@ public class CardListener implements Listener {
         if (inputData.containsKey(uuid)){
             e.setCancelled(true);
             String message = e.getMessage();
-            PokemonData.setPokemonOName(inputData.get(uuid), message);
+            PokemonData.setPokemonOName(inputData.get(uuid), message,player);
             inputData.remove(uuid);
             player.sendMessage("已成功修改精灵的名字为" + message);
         }
@@ -53,9 +53,9 @@ public class CardListener implements Listener {
             UUID uuid = player.getUniqueId();
             if (inputData.containsKey(uuid)){
                 String input = e.getInput();
-                PokemonData.setPokemonOName(inputData.get(uuid), input);
+                PokemonData.setPokemonOName(inputData.get(uuid), input,player);
                 inputData.remove(uuid);
-                player.sendMessage("已成功修改精灵的名字为" + input);
+                player.sendMessage("已修改精灵的名字为" + input);
             }
         }
     }
