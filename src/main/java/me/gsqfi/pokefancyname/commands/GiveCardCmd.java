@@ -1,6 +1,7 @@
 package me.gsqfi.pokefancyname.commands;
 
 import me.gsqfi.pokefancyname.common.EssTypeHelper;
+import me.gsqfi.pokefancyname.common.SenderHelper;
 import me.gsqfi.pokefancyname.fancy.renamecard.Card;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;

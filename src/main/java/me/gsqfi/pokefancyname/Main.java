@@ -34,7 +34,7 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new CardListener(),this);
         getServer().getPluginManager().registerEvents(new PokeDataListener(),this);
 
-        getLogger().info("§a插件已启用!");
+        getLogger().info("§aPlugin Enabled!");
     }
 
     @Override

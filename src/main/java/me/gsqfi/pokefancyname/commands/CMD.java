@@ -23,7 +23,7 @@ public class CMD implements TabExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!sender.isOp()) {
-            sender.sendMessage("你不是op!");
+            sender.sendMessage("You are not OP!");
             return false;
         }
 

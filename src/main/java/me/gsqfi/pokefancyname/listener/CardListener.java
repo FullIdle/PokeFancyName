@@ -6,6 +6,8 @@ import com.pixelmonmod.pixelmon.entities.pixelmon.EntityPixelmon;
 import me.fullidle.ficore.ficore.common.api.event.ForgeEvent;
 import me.gsqfi.pokefancyname.Main;
 import me.gsqfi.pokefancyname.PokemonData;
+import me.gsqfi.pokefancyname.common.SenderHelper;
+import me.gsqfi.pokefancyname.common.StringHelper;
 import me.gsqfi.pokefancyname.fancy.renamecard.Card;
 import net.minecraft.entity.player.EntityPlayerMP;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftEntity;
@@ -39,7 +41,8 @@ public class CardListener implements Listener {
             String message = e.getMessage();
             PokemonData.setPokemonOName(inputData.get(uuid), message,player);
             inputData.remove(uuid);
-            player.sendMessage("已成功修改精灵的名字为" + message);
+            SenderHelper.sendConfigMsg(player, "msg.rename_success", string ->
+                    StringHelper.replaceColorCode(string.replace("{name}",message)));
         }
     }
     @EventHandler
@@ -55,8 +58,8 @@ public class CardListener implements Listener {
                 String input = e.getInput();
                 PokemonData.setPokemonOName(inputData.get(uuid), input,player);
                 inputData.remove(uuid);
-                player.sendMessage("已修改精灵的名字为" + input);
-            }
+                SenderHelper.sendConfigMsg(player, "msg.rename_success", string ->
+                        StringHelper.replaceColorCode(string.replace("{name}",input)));            }
         }
     }
     @EventHandler
@@ -72,7 +75,7 @@ public class CardListener implements Listener {
         e.setCancelled(true);
         if (e.getHand().equals(EquipmentSlot.OFF_HAND)) return;
         if (inputData.containsKey(uuid)) {
-            player.sendMessage("你刚用了一张改名卡,还未提交宝可梦名字呢![如果在未改名时退出游戏则改名卡会以掉落物的方式退还]");
+            SenderHelper.sendConfigMsg(player,"msg.already_used_rename_card",StringHelper::replaceColorCode);
             return;
         }
         EntityPixelmon ep = (EntityPixelmon) handle;
@@ -88,7 +91,7 @@ public class CardListener implements Listener {
         player.getInventory().setItemInMainHand(itemInMainHand);
 
         inputData.put(uuid, pokemon.getUUID());
-        player.sendMessage("请在聊天框或者弹出的输入框内提交你要的名字~[如果在未改名时退出游戏则改名卡会以掉落物的方式退还]");
+        SenderHelper.sendConfigMsg(player,"msg.use_rename_card",StringHelper::replaceColorCode);
     }
     @EventHandler
     public void quitGiveBack(PlayerQuitEvent e){

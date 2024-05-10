@@ -15,3 +15,16 @@ card:
   lore:
     - '对自己的宝可梦使用即可修改自己宝可梦名字'
     - '右键使用后在输入框中输入想要的名字[可以是变量]'
+
+#Msg
+msg:
+  help:
+    - "HELP========"
+    - "/pfname rename [player] [slot] [name...] 直接修改名字"
+    - "/pfname reload 重载配置"
+    - "/pfname help 帮助"
+    - "/pfname givecard [1-64] 给与改名卡"
+  rename_success: "已成功修改精灵的名字为 {name}"
+  already_used_rename_card: '已使用过一次改名卡,先成功改名一次,或者退出游戏自动退还改名卡'
+  use_rename_card: '请在输入栏内输入需要改的名字'
+
